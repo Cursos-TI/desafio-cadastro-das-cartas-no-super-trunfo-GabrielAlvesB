@@ -60,18 +60,85 @@ int main() {
     double pibPerCapita1 = calcularPibPerCapita(pib1, populacao1);
     double pibPerCapita2 = calcularPibPerCapita(pib2, populacao2);
 
-    // Comparação de cartas
-    printf("\nComparação de cartas (Atributo: População)\n");
-    printf("%s (%s): %d habitantes\n", cidade1, estado1, populacao1);
-    printf("%s (%s): %d habitantes\n", cidade2, estado2, populacao2);
+    // Menu interativo para escolher o atributo a ser comparado
+    int escolha;
+    printf("\nEscolha o atributo para comparação:\n");
+    printf("1 - População\n");
+    printf("2 - Área\n");
+    printf("3 - PIB\n");
+    printf("4 - Número de pontos turísticos\n");
+    printf("5 - Densidade demográfica\n");
+    printf("Digite sua escolha: ");
+    scanf("%d", &escolha);
 
-    // Determinação do vencedor
-    if (populacao1 > populacao2) {
-        printf("Resultado: %s venceu!\n", cidade1);
-    } else if (populacao2 > populacao1) {
-        printf("Resultado: %s venceu!\n", cidade2);
-    } else {
-        printf("Resultado: Empate!\n");
+    switch (escolha) {
+        case 1:  // Comparação por População
+            printf("\nComparação de cartas (Atributo: População)\n");
+            printf("%s (%s): %d habitantes\n", cidade1, estado1, populacao1);
+            printf("%s (%s): %d habitantes\n", cidade2, estado2, populacao2);
+            if (populacao1 > populacao2) {
+                printf("Resultado: %s venceu!\n", cidade1);
+            } else if (populacao2 > populacao1) {
+                printf("Resultado: %s venceu!\n", cidade2);
+            } else {
+                printf("Resultado: Empate!\n");
+            }
+            break;
+        
+        case 2:  // Comparação por Área
+            printf("\nComparação de cartas (Atributo: Área)\n");
+            printf("%s (%s): %.2f km²\n", cidade1, estado1, area1);
+            printf("%s (%s): %.2f km²\n", cidade2, estado2, area2);
+            if (area1 > area2) {
+                printf("Resultado: %s venceu!\n", cidade1);
+            } else if (area2 > area1) {
+                printf("Resultado: %s venceu!\n", cidade2);
+            } else {
+                printf("Resultado: Empate!\n");
+            }
+            break;
+
+        case 3:  // Comparação por PIB
+            printf("\nComparação de cartas (Atributo: PIB)\n");
+            printf("%s (%s): %.2f bilhões\n", cidade1, estado1, pib1 / 1e9);
+            printf("%s (%s): %.2f bilhões\n", cidade2, estado2, pib2 / 1e9);
+            if (pib1 > pib2) {
+                printf("Resultado: %s venceu!\n", cidade1);
+            } else if (pib2 > pib1) {
+                printf("Resultado: %s venceu!\n", cidade2);
+            } else {
+                printf("Resultado: Empate!\n");
+            }
+            break;
+
+        case 4:  // Comparação por número de pontos turísticos
+            printf("\nComparação de cartas (Atributo: Pontos Turísticos)\n");
+            printf("%s (%s): %d pontos turísticos\n", cidade1, estado1, pontosTuristicos1);
+            printf("%s (%s): %d pontos turísticos\n", cidade2, estado2, pontosTuristicos2);
+            if (pontosTuristicos1 > pontosTuristicos2) {
+                printf("Resultado: %s venceu!\n", cidade1);
+            } else if (pontosTuristicos2 > pontosTuristicos1) {
+                printf("Resultado: %s venceu!\n", cidade2);
+            } else {
+                printf("Resultado: Empate!\n");
+            }
+            break;
+
+        case 5:  // Comparação por Densidade Demográfica
+            printf("\nComparação de cartas (Atributo: Densidade Demográfica)\n");
+            printf("%s (%s): %.2f habitantes/km²\n", cidade1, estado1, densidade1);
+            printf("%s (%s): %.2f habitantes/km²\n", cidade2, estado2, densidade2);
+            if (densidade1 < densidade2) {  // Menor densidade vence
+                printf("Resultado: %s venceu!\n", cidade1);
+            } else if (densidade2 < densidade1) {
+                printf("Resultado: %s venceu!\n", cidade2);
+            } else {
+                printf("Resultado: Empate!\n");
+            }
+            break;
+
+        default:
+            printf("Opção inválida! Tente novamente.\n");
     }
 
     return 0;
